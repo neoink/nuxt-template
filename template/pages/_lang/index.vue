@@ -1,10 +1,3 @@
-{{#if i18n}}
-<script>
-import Index from '~/pages/_lang/index.vue';
-
-export default Index;
-</script>
-{{else}}
 <template>
   <section class="container">
     <div>
@@ -79,4 +72,3 @@ export default {
   padding-top: 15px;
 }
 </style>
-{{/if}}

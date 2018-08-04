@@ -1,4 +1,31 @@
+require('dotenv').config();
+
+const { join } = require('path');
+{{#if multiSite}}
+// Multisite 🐫
+const typeSite = process.env.TYPE_SITE || '';
+{{/if}}
+
+// __Global CSS vars setting 🐫
+const globalCssVars = require('./assets/config/config_global');
+{{#if multiSite}}
+const typeCssVars = require(`./assets/config/config_${typeSite}`);
+const CSSVars = _.merge(globalCssVars, typeCssVars);
+{{else}}
+const CSSVars = globalCssVars;
+{{/if}}
+
 module.exports = {
+  /**
+   * Middlewares
+   */
+  router: {
+    middleware: [
+      {{#if i18n}}
+      'i18n-parameter'
+      {{/if}}
+    ],
+  },
   /*
   ** Headers of the page
   */
@@ -17,15 +44,74 @@ module.exports = {
   ** Global CSS
   */
   css: ['~/assets/css/main.css'],
+  /**
+   ** Load plugin
+   */
+  plugins: [
+    '~/vue.config.js'
+    {{#if i18n}}
+    '~/plugins/i18n.js',
+    {{/if}}
+    {{#if elementUi}}
+    '~/plugins/element-ui',
+    {{/if}}
+    {{#if lodash}}
+    '~/plugins/lodash',
+    {{/if}}
+  ],
   /*
   ** Add axios globally
   */
   build: {
-    vendor: ['axios'],
+    vendor: [
+      'axios'
+      {{#if i18n}}
+      'vue-i18n'
+      {{/if}}
+    ],
+    // __Use for splitting files (https://github.com/nuxt/nuxt.js/pull/2687)
+    maxChunkSize: 300000,
+    publicPath: '/dist/', // __CDN config or rewrite path
+    // __Lazyload Components
+    babel: {
+      plugins: [
+        {{#if elementUi}}
+        [
+          'component',
+          {
+            libraryName: 'element-ui',
+            styleLibraryName: 'theme-chalk',
+          },
+        ],
+        {{/if}}
+        {{#if lodash}}
+        'lodash',
+        {{/if}}
+      ],
+    },
+    // __Extract CSS for production env
+    extractCSS: {
+      allChunks: true,
+    },
+    // __PostCSS setting
+    postcss: [
+      // eslint-disable-next-line
+      require('postcss-cssnext')({        
+        features: CSSVars, // 🐫
+      }),
+      require('postcss-nested')(), // eslint-disable-line global-require
+      require('css-mqpacker')(), // eslint-disable-line global-require
+    ],
+    filenames: {
+      app: '[name].[chunkhash].js',
+    },
     /*
     ** Run ESLINT on save
     */
     extend (config, ctx) {
+      const urlLoader = config.module.rules.find(rule => rule.loader === 'url-loader');
+      urlLoader.test = /\.(png|jpe?g|gif)$/;
+
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',

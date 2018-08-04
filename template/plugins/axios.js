@@ -1,9 +1,10 @@
-import * as axios from 'axios'
-
-let options = {}
-// The server-side needs a full url to works
-if (process.server) {
-  options.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`
+export default function({ $axios, error }) {
+  $axios.onError(_error => {
+    const code = parseInt(_error.response && _error.response.status, 10);
+    if (code === 400) {
+      return error({ message: 'Bad request.', statusCode: 400 });
+    } else if (code === 500) {
+      return error({ message: 'Internal server error.', statusCode: 500 });
+    }
+  });
 }
-
-export default axios.create(options)

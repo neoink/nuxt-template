@@ -1,16 +1,13 @@
-const express = require('express')
+import { Router } from 'express';
+{{#if i18n}}
+import interfaceI18n from './routes/interface-i18n';
+{{/if}}
 
-// Create express instnace
-const app = express()
+const router = Router();
 
-// Require API routes
-const users = require('./routes/users')
+// Interface
+{{#if i18n}}
+router.use(interfaceI18n);
+{{/if}}
 
-// Import API Routes
-app.use(users)
-
-// Export the server middleware
-module.exports = {
-  path: '/api',
-  handler: app
-}
+export default router;
