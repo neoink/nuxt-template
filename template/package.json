@@ -1,8 +1,8 @@
 {
-  "name": "test",
+  "name": "{{ name }}",
   "version": "1.0.0",
-  "description": "Nuxt.js project",
-  "author": "laurent <laurent@neoink.fr>",
+  "description": "{{ description }}",
+  "author": "{{ author }}",
   "private": true,
   "scripts": {
     "dev": "nuxt",

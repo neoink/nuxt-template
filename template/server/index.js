@@ -30,7 +30,7 @@ const apiExternalUrl =
 app.set('port', port); // Set port into express app
 app.set('trust proxy', true); // Configure express proxy
 app.set('allowedIP', ['127.0.0.1']); // Allowed IP for internatal API
-app.set('SECURE_KEY', '95a74f7b8cf55cd6a8e1ad43fe215af0f23cd058'); // Secure Key for JWT
+//app.set('SECURE_KEY', {{ JWTSecret }}); // Secure Key for JWT
 
 // Set api URL
 app.set('API_INTERNAL_URL', apiInternalUrl);
@@ -53,7 +53,7 @@ app.use(
       ttl: 86400,
       db: 1,
     }),
-    secret: '1fb8862c011bf17f1aa33686bc7fd7a8',
+    secret: '{{ redisSecret }}',
     resave: false,
     saveUninitialized: false,
   }),

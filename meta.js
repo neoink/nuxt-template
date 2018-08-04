@@ -20,6 +20,10 @@ module.exports = {
       type: 'string',
       message: 'Author'
     },
+    redisSecret: {
+      type: 'string',
+      message: 'redis secret'
+    },
     multiSite: {
       type: 'confirm',
       message: 'Use Multi sites ?'
