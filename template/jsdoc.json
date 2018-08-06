@@ -1,0 +1,17 @@
+{
+    "plugins": ["node_modules/jsdoc-vue"],
+    "source": {
+      "includePattern": "\\.(vue|js)$",
+      "exclude": ["node_modules", "build", ".nuxt"]
+    },
+    "templates": {
+      "outputSourceFiles": true,
+      "linenums": true,
+      "theme": "Flatly"
+    },
+    "opts": {
+      "encoding": "utf8",
+      "destination": "./docs/"
+    }
+  }
+  

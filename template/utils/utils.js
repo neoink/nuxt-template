@@ -34,7 +34,7 @@ export const dateFormat = (dateString, method, param) => {
   switch (method) {
     case 'returnFormatedDate':
       switch (param) {
-        {{#each i18Config |value key|}}  
+        {{#each i18Config as |value key|}}  
         {{#if_eq key 'FR'}}
         case 'fr':
           output = `${date.day}/${date.month}/${date.year}`; // d/m/Y

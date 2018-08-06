@@ -30,7 +30,7 @@ const apiExternalUrl =
 app.set('port', port); // Set port into express app
 app.set('trust proxy', true); // Configure express proxy
 app.set('allowedIP', ['127.0.0.1']); // Allowed IP for internatal API
-//app.set('SECURE_KEY', {{ JWTSecret }}); // Secure Key for JWT
+app.set('JWT_SECRET', {{ JWTSecret }}); // Secure Key for JWT
 
 // Set api URL
 app.set('API_INTERNAL_URL', apiInternalUrl);

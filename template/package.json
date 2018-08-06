@@ -4,12 +4,31 @@
   "description": "{{ description }}",
   "author": "{{ author }}",
   "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt build && nuxt start",
+  "scripts": {    
+    {{#if multiSite}}
+    "dev_ex1": "yarn generate-translation && cross-env TYPE_SITE=\"ex1\" backpack dev",
+    "dev_ex2": "yarn generate-translation && cross-env TYPE_SITE=\"ex2\" backpack dev",
+    "debug_dev": "yarn generate-translation && cross-env TYPE_SITE=\"ex1\" DEBUG=express:* backpack dev",
+    "debug_dev": "yarn generate-translation && cross-env TYPE_SITE=\"ex2\" DEBUG=express:* backpack dev",
+    "build": "yarn generate-translation &&  cross-env TYPE_SITE=\"ex1\" NODE_ENV=production nuxt build && backpack build",
+    "build": "yarn generate-translation &&  cross-env TYPE_SITE=\"ex2\" NODE_ENV=production nuxt build && backpack build",
+    "start": "cross-env TYPE_SITE=\"ex1\" NODE_ENV=production node build/main.js",
+    "start": "cross-env TYPE_SITE=\"ex2\" NODE_ENV=production node build/main.js",
+    "deploy": "cross-env TYPE_SITE=\"ex1\" yarn run build_ex1 && yarn run start_ex1",
+    "deploy": "cross-env TYPE_SITE=\"ex2\" yarn run build_ex2 && yarn run start_ex2",
+    {{else}}
+    "dev": "yarn generate-translation && backpack dev",
+    "debug_dev": "yarn generate-translation && cross-env DEBUG=express:* backpack dev",
+    "build": "yarn generate-translation && cross-env NODE_ENV=production nuxt build && backpack build",
+    "start": "cross-env NODE_ENV=production node build/main.js",
+    "deploy": "yarn run build && yarn run start",
+    {{/if}}    
     "precommit": "npm run lint",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    {{#if docs}}
+    "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json -t ./node_modules/ink-docstrap/template -R README.md -r .",
+    {{/if}}
+    "generate-translation": "node cli/translation/i18n.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -35,6 +54,7 @@
     "uuid": "^3.2.1",
     "connect-redis": "^3.3.3",
     "redis": "^2.8.0",
+    "jsonwebtoken": "^8.3.0",
     {{#if i18n}}
     "vue-i18n": "^7.4.2",
     {{/if}}
@@ -52,6 +72,12 @@
     "winston-daily-rotate-file": "^3.0.1"
   },
   "devDependencies": {
+    {{#if docs}}
+    "ink-docstrap": "^1.3.2",
+    "jsdoc": "^3.5.5",
+    "jsdoc-vue": "^1.0.0",
+    "vue-template-compiler": "^2.5.13",
+    {{/if}}
     "babel-eslint": "^7.2.3",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",

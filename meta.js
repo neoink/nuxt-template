@@ -27,7 +27,13 @@ module.exports = {
     },
     redisSecret: {
       type: 'string',
-      message: 'redis secret'
+      required: true,
+      message: 'Redis secret'
+    },
+    JWTSecret: {
+      type: 'string',
+      required: true,
+      message: 'JWT secret'
     },
     multiSite: {
       type: 'confirm',
@@ -59,6 +65,20 @@ module.exports = {
     deviceDetect: {
       type: 'confirm',
       message: 'Use nuxt-device-detect ?'
+    },
+    docs: {
+      type: 'confirm',
+      message: 'Use documentation ?'
+    },
+    GA: {
+      type: 'confirm',
+      message: 'Use Google Analytics ?'
+    },
+    GACode: {
+      when: 'GA',
+      type: 'string',
+      required: true,
+      message: 'Google Analytics tag code'
     }
   },
   filters: {
@@ -68,7 +88,9 @@ module.exports = {
     'server/api/routes/interface-i18n.js': 'i18n',
     'pages/_lang/**/*': 'i18n',
     'plugins/element-ui.js': 'elementUi',
-    'plugins/lodash.js': 'lodash'
+    'plugins/lodash.js': 'lodash',
+    'jsdoc.json': 'docs',
+    'plugins/ga.js': 'GA'
   },
   completeMessage:
     '{{#inPlace}}To get started:\n\n  npm install # Or yarn\n  npm run dev{{else}}To get started:\n\n  cd {{destDirName}}\n  npm install # Or yarn\n  npm run dev{{/inPlace}}'

@@ -1,8 +1,12 @@
-# dependencies
+# Dependencies
 node_modules
 
-# logs
+# Environment variables
+.env
+
+# Logs
 npm-debug.log
+log
 
 # Nuxt build
 .nuxt
@@ -12,3 +16,12 @@ dist
 
 # Backpack build
 build
+
+# VSCode config
+.vscode
+
+# Generated docs
+docs
+
+# Generated translations
+server/lang/*.json

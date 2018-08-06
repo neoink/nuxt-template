@@ -48,7 +48,7 @@ module.exports = {
    ** Load plugin
    */
   plugins: [
-    '~/vue.config.js'
+    '~/vue.config.js',
     {{#if i18n}}
     '~/plugins/i18n.js',
     {{/if}}
@@ -58,15 +58,18 @@ module.exports = {
     {{#if lodash}}
     '~/plugins/lodash',
     {{/if}}
+    {{#if GA}}
+    { src: '~/plugins/ga.js', ssr: false },
+    {{/if}}
   ],
   /*
   ** Add axios globally
   */
   build: {
     vendor: [
-      'axios'
+      'axios',
       {{#if i18n}}
-      'vue-i18n'
+      'vue-i18n',
       {{/if}}
     ],
     // __Use for splitting files (https://github.com/nuxt/nuxt.js/pull/2687)
