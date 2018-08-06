@@ -3,9 +3,23 @@ import Vue from 'vue'; // eslint-disable-line import/no-extraneous-dependencies
 import locale from 'element-ui/lib/locale';
 import langEN from 'element-ui/lib/locale/lang/en';
 {{#if i18n}}
-import langFR from 'element-ui/lib/locale/lang/fr';
-import langDE from 'element-ui/lib/locale/lang/de';
+{{#arrayOf i18nConfig 'NL,BE'}}
 import langNL from 'element-ui/lib/locale/lang/nl';
+{{/arrayOf}}
+{{#each i18nConfig as |value key|}}
+{{#if_eq key 'FR'}}
+import langFR from 'element-ui/lib/locale/lang/fr';
+{{/if_eq}}
+{{#if_eq key 'DE'}}
+import langDE from 'element-ui/lib/locale/lang/de';
+{{/if_eq}}
+{{#if_eq key 'ES'}}
+import langES from 'element-ui/lib/locale/lang/es';
+{{/if_eq}}
+{{#if_eq key 'IT'}}
+import langIT from 'element-ui/lib/locale/lang/it';
+{{/if_eq}}
+{{/each}}
 {{/if}}
 
 import {
@@ -83,21 +97,33 @@ export default ({ params }) => {
   {{#if i18n}}
   // Load locale by lang
   switch (params.lang) {
+    {{#each i18nConfig as |value key|}}
+    {{#if_eq key 'FR'}}
     case 'fr':
       localFileImport = langFR;
       break;
+    {{/if_eq}}
+    {{#if_eq key 'DE'}}
     case 'de':
       localFileImport = langDE;
       break;
+    {{/if_eq}}
+    {{#if_eq key 'NL'}}
     case 'nl':
       localFileImport = langNL;
       break;
+    {{/if_eq}}
+    {{#if_eq key 'BE'}}
     case 'be':
       localFileImport = langNL;
       break;
+    {{/if_eq}}
+    {{#if_eq key 'IE'}}
     case 'ie':
       localFileImport = langEN;
       break;
+    {{/if_eq}}
+    {{/each}}
     default:
       localFileImport = langEN;
   }

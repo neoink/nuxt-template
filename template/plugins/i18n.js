@@ -4,9 +4,10 @@ import VueI18n from 'vue-i18n';
 import Numeral from 'numeral';
 
 // Import locale for numeral browser render
+{{#arrayOf i18nConfig 'FR,NL,BE,DE,ES,IT,IE'}}
 import localFr from 'numeral/locales/fr'; // eslint-disable-line
+{{/arrayOf}}
 import localEn from 'numeral/locales/en-gb'; // eslint-disable-line
-import localNl from 'numeral/locales/nl-nl'; // eslint-disable-line
 {{/if}}
 
 Vue.use(VueI18n);
@@ -22,11 +23,29 @@ export default ({ app, store, params }) => {
     fallbackLocale: 'en',
     messages: {
       en: store.state.localeMessage || require('~/server/lang/en-GB.json'), // eslint-disable-line global-require,
-      ie: store.state.localeMessage,
-      fr: store.state.localMessage,
-      de: store.state.localMessage,
-      nl: store.state.localMessage,
-      be: store.state.localMessage
+      {{#each i18nConfig as |value key|}}
+      {{#if_eq key 'IE'}}      
+      ie: store.state.localeMessage,      
+      {{/if_eq}}
+      {{#if_eq key 'FR'}}      
+      fr: store.state.localMessage,      
+      {{/if_eq}}
+      {{#if_eq key 'DE'}}      
+      de: store.state.localMessage,      
+      {{/if_eq}}
+      {{#if_eq key 'NL'}}      
+      nl: store.state.localMessage,      
+      {{/if_eq}}
+      {{#if_eq key 'BE'}}      
+      be: store.state.localMessage,      
+      {{/if_eq}}
+      {{#if_eq key 'ES'}}      
+      es: store.state.localMessage,      
+      {{/if_eq}}
+      {{#if_eq key 'IT'}}      
+      it: store.state.localMessage,      
+      {{/if_eq}}
+      {{/each}}      
     }
   });
 
@@ -41,18 +60,43 @@ export default ({ app, store, params }) => {
   let numeralLocale;
 
   switch (params.lang) {
+    {{#each i18nConfig as |value key|}}
+    {{#if_eq key 'FR'}}    
     case 'fr':
       numeralLocale = 'fr';
-      break;
+      break;    
+    {{/if_eq}}
+    {{#if_eq key 'NL'}}    
     case 'nl':
-      numeralLocale = 'nl-nl';
-      break;
+      numeralLocale = 'fr';
+      break;    
+    {{/if_eq}}
+    {{#if_eq key 'BE'}}    
     case 'be':
-      numeralLocale = 'nl-nl';
-      break;
+      numeralLocale = 'fr';
+      break;    
+    {{/if_eq}}
+    {{#if_eq key 'DE'}}    
     case 'de':
       numeralLocale = 'fr';
-      break;
+      break;    
+    {{/if_eq}}
+    {{#if_eq key 'IE'}}    
+    case 'ie':
+      numeralLocale = 'fr';
+      break;    
+    {{/if_eq}}
+    {{#if_eq key 'ES'}}    
+    case 'es':
+      numeralLocale = 'fr';
+      break;    
+    {{/if_eq}}
+    {{#if_eq key 'IT'}}    
+    case 'it':
+      numeralLocale = 'fr';
+      break;    
+    {{/if_eq}}
+    {{/each}}                
     default:
       numeralLocale = 'en-gb';
   }

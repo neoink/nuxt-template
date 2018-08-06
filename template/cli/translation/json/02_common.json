@@ -1,8 +1,22 @@
 {
-  "example": {
-    "en": "Hello world !",
-    "fr": "Bonjour le monde !",
-    "de": "NT",
-    "nl": "NT"
+  "example": {    
+    {{#each i18nConfig as |value key|}}    
+    {{#if_eq key 'FR'}}    
+    "fr": "Bonjour !",    
+    {{/if_eq}}
+    {{#if_eq key 'NL'}}    
+    "nl": "nl-NL",    
+    {{/if_eq}}
+    {{#if_eq key 'DE'}}    
+    "de": "Hallo !",    
+    {{/if_eq}}
+    {{#if_eq key 'ES'}}    
+    "es": "Buenos dias !",    
+    {{/if_eq}}
+    {{#if_eq key 'IT'}}    
+    "it": "Buongiorno !",    
+    {{/if_eq}}
+    {{/each}}
+    "en": "Hello !"
   }
 }

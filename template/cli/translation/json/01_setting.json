@@ -1,10 +1,28 @@
 {
-  "iso": {
+  "iso": {    
+    {{#each i18nConfig as |value key|}}
+    {{#if_eq key 'FR'}}    
+    "fr": "fr-FR",    
+    {{/if_eq}}
+    {{#if_eq key 'IE'}}    
+    "ie": "en-IE",        
+    {{/if_eq}}
+    {{#if_eq key 'NL'}}    
+    "nl": "nl-NL",    
+    {{/if_eq}}
+    {{#if_eq key 'BE'}}    
+    "be": "nl-BE",    
+    {{/if_eq}}
+    {{#if_eq key 'DE'}}    
+    "de": "de-DE",    
+    {{/if_eq}}    
+    {{#if_eq key 'ES'}}    
+    "es": "es-ES",    
+    {{/if_eq}}    
+    {{#if_eq key 'IT'}}    
+    "it": "it-IT",    
+    {{/if_eq}}
+    {{/each}}
     "en": "en-GB",
-    "ie": "en-IE",
-    "fr": "fr-FR",
-    "nl": "nl-NL",
-    "be": "nl-BE",
-    "de": "de-DE"
   }
 }

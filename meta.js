@@ -1,7 +1,12 @@
 module.exports = {
   helpers: {
-    raw: function(options) {
-      return options.fn(this);
+    raw: options => options.fn(this),
+    arrayOf: function(v1, v2, options) {
+      const v2Arr = v2.split(',');
+      const result = Object.keys(v1).some(
+        value => (v2Arr.indexOf(value) > -1 ? true : false)
+      );
+      return result ? options.fn(this) : options.inverse(this);
     }
   },
   prompts: {
@@ -31,6 +36,12 @@ module.exports = {
     i18n: {
       type: 'confirm',
       message: 'Use vue-i18n ?'
+    },
+    i18nConfig: {
+      when: 'i18n',
+      type: 'checkbox',
+      message: 'Additionals countries (EN by default) ?',
+      choices: ['FR', 'DE', 'NL', 'IE', 'BE', 'ES', 'IT']
     },
     i18nNumeral: {
       when: 'i18n',

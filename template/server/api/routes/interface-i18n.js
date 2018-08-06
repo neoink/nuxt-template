@@ -12,11 +12,43 @@ const router = Router();
 
 const langMap = {
   en: 'en-GB.json',
-  ie: 'en-IE.json',
+  {{#each i18nConfig as |value key|}}
+  {{#if_eq key 'FR'}}
+  {{#if value}}
   fr: 'fr-FR.json',
-  de: 'de-DE.json',
+  {{/if}}
+  {{/if_eq}}
+  {{#if_eq key 'IE'}}
+  {{#if value}}
+  ie: 'en-IE.json',
+  {{/if}}
+  {{/if_eq}}
+  {{#if_eq key 'NL'}}
+  {{#if value}}
   nl: 'nl-NL.json',
+  {{/if}}
+  {{/if_eq}}
+  {{#if_eq key 'BE'}}
+  {{#if value}}
   be: 'nl-BE.json',
+  {{/if}}
+  {{/if_eq}}
+  {{#if_eq key 'DE'}}
+  {{#if value}}
+  de: 'de-DE.json',
+  {{/if}}
+  {{/if_eq}}
+  {{#if_eq key 'ES'}}
+  {{#if value}}
+  es: 'es-ES.json',
+  {{/if}}
+  {{/if_eq}}
+  {{#if_eq key 'IT'}}
+  {{#if value}}
+  it: 'it-IT.json',
+  {{/if}}
+  {{/if_eq}}
+  {{/each}}          
 };
 
 function getLang(idLang) {

@@ -34,20 +34,45 @@ export const dateFormat = (dateString, method, param) => {
   switch (method) {
     case 'returnFormatedDate':
       switch (param) {
-        case 'en':
-          output = `${date.year}-${date.month}-${date.day}`; // Y-m-d
-          break;
+        {{#each i18Config |value key|}}  
+        {{#if_eq key 'FR'}}
         case 'fr':
           output = `${date.day}/${date.month}/${date.year}`; // d/m/Y
           break;
+        {{/if_eq}}
+        {{#if_eq key 'ES'}}
+        case 'es':
+          output = `${date.day}/${date.month}/${date.year}`; // d/m/Y
+          break;
+        {{/if_eq}}
+        {{#if_eq key 'IT'}}
+        case 'it':
+          output = `${date.day}/${date.month}/${date.year}`; // d/m/Y
+          break;
+        {{/if_eq}}
+        {{#if_eq key 'IE'}}
+        case 'ie':
+          output = `${date.day}/${date.month}/${date.year}`; // d/m/Y
+          break;
+        {{/if_eq}}
+        {{#if_eq key 'DE'}}
         case 'de':
           output = `${date.day}.${date.month}.${date.year}`; // d.m.Y
           break;
+        {{/if_eq}}
+        {{#if_eq key 'NL'}}
         case 'nl':
           output = `${date.day}-${date.month}-${date.year}`; // d-m-Y
           break;
+        {{/if_eq}}
+        {{#if_eq key 'BE'}}
+        case 'be':
+          output = `${date.day}-${date.month}-${date.year}`; // d-m-Y
+          break;
+        {{/if_eq}}
+        {{/each}}
         default:
-          output = '';
+          output = `${date.year}-${date.month}-${date.day}`; // Y-m-d
           break;
       }
       break;
