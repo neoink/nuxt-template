@@ -1,6 +1,6 @@
 {
   "example": {    
-    {{#each i18nConfig as |value key|}}    
+    {{#each i18nConfig as |value key|}}
     {{#if_eq key 'FR'}}    
     "fr": "Bonjour !",    
     {{/if_eq}}

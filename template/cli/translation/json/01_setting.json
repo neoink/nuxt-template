@@ -23,6 +23,6 @@
     "it": "it-IT",    
     {{/if_eq}}
     {{/each}}
-    "en": "en-GB",
+    "en": "en-GB"
   }
 }
