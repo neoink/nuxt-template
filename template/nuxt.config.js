@@ -41,6 +41,38 @@ module.exports = {
     ]
   },
   /*
+  ** Customize the progress bar color
+  */
+  loading: { color: '#218DB0' },
+  /**
+   /*
+  ** Loading Modules
+  */
+  modules: [
+    {{#if deviceDetect}}
+    'nuxt-device-detect', 
+    {{/if}}
+    '@nuxtjs/axios', 
+    '~/modules/errorHandler'
+  ],
+  /**
+   ** Axios setting
+  */
+  axios: {
+    baseURL: 'http://127.0.0.1:3000/api/v1/',
+    credentials: true,
+    retry: {
+      retries: 2,
+      retryDelay: retryCount => retryCount * 2000,
+      retryCondition: error => {
+        const errorMap = [408, 503, 504];
+        if (typeof error.response && errorMap.indexOf(error.response.status) !== -1) {
+          return true;
+        }
+      },
+    },
+  },
+  /*
   ** Global CSS
   */
   css: ['~/assets/css/main.css'],
@@ -66,6 +98,10 @@ module.exports = {
   ** Add axios globally
   */
   build: {
+    analyze: false,
+    /**
+     * Vendor
+     */
     vendor: [
       'axios',
       {{#if i18n}}
@@ -124,9 +160,5 @@ module.exports = {
         })
       }
     }
-  },
-  serverMiddleware: [
-    // API middleware
-    '~/api/index.js'
-  ]
+  }
 }
