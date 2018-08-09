@@ -31,11 +31,8 @@
     "generate-translation": "node cli/translation/i18n.js"
   },
   "dependencies": {
-    "axios": "^0.16.2",
-    {{#if elementUi}}
-    "babel-plugin-component": "^1.1.0",
-    {{/if}}
     "@nuxtjs/axios": "^5.0.1",
+    "axios": "^0.16.2",    
     {{#if deviceDetect}}
     "nuxt-device-detect": "^1.1.0",
     {{/if}}
@@ -62,11 +59,13 @@
     "numeral": "^2.0.6",
     {{/if}}
     {{#if elementUi}}
+    "babel-plugin-component": "^1.1.0",
     "element-ui": "^2.2.0",
     {{/if}}
     {{#if lodash}}
     "lodash": "^4.17.5",
     "vue-lodash": "^1.0.4",
+    "babel-plugin-lodash": "^3.3.2",
     {{/if}}
     "winston": "^3.0.0-rc1",
     "winston-daily-rotate-file": "^3.0.1"
