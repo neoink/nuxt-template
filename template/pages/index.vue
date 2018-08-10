@@ -7,8 +7,7 @@ export default Index;
 {{else}}
 <template>
   <section class="container">
-    <div>
-      <app-logo/>
+    <div>      
       <h1 class="title">
         vacalians-app
       </h1>
@@ -30,12 +29,7 @@ export default Index;
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue';
-
-export default {
-  components: {
-    AppLogo,
-  },
+export default {  
   async asyncData({ app }) {
     try {
       const { data } = await app.$axios.get('/test');

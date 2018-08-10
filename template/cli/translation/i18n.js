@@ -87,7 +87,7 @@ function writeI118nFile(jsonFile) {
       err => {
         if (err) throw new Error(err);
 
-        console.log(iso.underline.green, 'i18n file created.'.green);
+        console.log('🌍 ', iso.underline.green, 'i18n file created.'.green);
       },
     );
   }

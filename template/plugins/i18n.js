@@ -25,28 +25,28 @@ export default ({ app, store, params }) => {
       en: store.state.localeMessage || require('~/server/lang/en-GB.json'), // eslint-disable-line global-require,
       {{#each i18nConfig as |value key|}}
       {{#if_eq key 'IE'}}      
-      ie: store.state.localeMessage,      
+      ie: store.state.localeMessage,
       {{/if_eq}}
       {{#if_eq key 'FR'}}      
-      fr: store.state.localMessage,      
+      fr: store.state.localMessage,
       {{/if_eq}}
       {{#if_eq key 'DE'}}      
-      de: store.state.localMessage,      
+      de: store.state.localMessage,
       {{/if_eq}}
       {{#if_eq key 'NL'}}      
-      nl: store.state.localMessage,      
+      nl: store.state.localMessage,
       {{/if_eq}}
       {{#if_eq key 'BE'}}      
-      be: store.state.localMessage,      
+      be: store.state.localMessage,
       {{/if_eq}}
       {{#if_eq key 'ES'}}      
-      es: store.state.localMessage,      
+      es: store.state.localMessage,
       {{/if_eq}}
       {{#if_eq key 'IT'}}      
-      it: store.state.localMessage,      
+      it: store.state.localMessage,
       {{/if_eq}}
       {{/each}}      
-    }
+    },
   });
 
   app.i18n.path = link => {
@@ -64,37 +64,37 @@ export default ({ app, store, params }) => {
     {{#if_eq key 'FR'}}    
     case 'fr':
       numeralLocale = 'fr';
-      break;    
+      break;
     {{/if_eq}}
     {{#if_eq key 'NL'}}    
     case 'nl':
       numeralLocale = 'fr';
-      break;    
+      break;
     {{/if_eq}}
     {{#if_eq key 'BE'}}    
     case 'be':
       numeralLocale = 'fr';
-      break;    
+      break;
     {{/if_eq}}
     {{#if_eq key 'DE'}}    
     case 'de':
       numeralLocale = 'fr';
-      break;    
+      break;
     {{/if_eq}}
     {{#if_eq key 'IE'}}    
     case 'ie':
       numeralLocale = 'fr';
-      break;    
+      break;
     {{/if_eq}}
     {{#if_eq key 'ES'}}    
     case 'es':
       numeralLocale = 'fr';
-      break;    
+      break;
     {{/if_eq}}
     {{#if_eq key 'IT'}}    
     case 'it':
       numeralLocale = 'fr';
-      break;    
+      break;
     {{/if_eq}}
     {{/each}}                
     default:

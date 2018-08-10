@@ -102,3 +102,20 @@ export const dateFormat = (dateString, method, param) => {
   return output;
 };
 {{/if}}
+
+{{#if GAReport}}
+export const gaErrorHandler = (context, error) => {
+  const errorReturn = {};
+  const errMap = ['response', 'status', 'data', 'statusText'];
+
+  for (let i = 0, len = errMap.length; i < len; i += 1) {
+    if (typeof error[errMap[i]] !== 'undefined') {
+      errorReturn[errMap[i]] = error[errMap[i]];
+    }
+  }
+
+  setTimeout(() => {
+    throw new Error(`${context} : ${JSON.stringify(errorReturn)}`);
+  }, 300);
+};
+{{/if}}

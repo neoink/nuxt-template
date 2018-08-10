@@ -50,9 +50,9 @@ module.exports = {
   */
   modules: [
     {{#if deviceDetect}}
-    'nuxt-device-detect', 
+    'nuxt-device-detect',
     {{/if}}
-    '@nuxtjs/axios', 
+    '@nuxtjs/axios',
     '~/modules/errorHandler'
   ],
   /**
@@ -75,7 +75,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~/assets/css/main.css'],
+  css: [join(__dirname, 'assets/css/normalize.css'), join(__dirname, 'assets/css/main.css')],
   /**
    ** Load plugin
    */

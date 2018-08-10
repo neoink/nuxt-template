@@ -74,6 +74,11 @@ module.exports = {
       type: 'confirm',
       message: 'Use Google Analytics ?'
     },
+    GAReport: {
+      when: 'GA',
+      type: 'confirm',
+      message: 'Report client error on GA ?'
+    },
     GACode: {
       when: 'GA',
       type: 'string',

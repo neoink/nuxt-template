@@ -1,4 +1,6 @@
-export default ({ isHMR, app, store, route, error, redirect, params }) => {
+export default ({
+  isHMR, app, store, route, error, redirect, params,
+}) => {
   // If middleware is called from hot module replacement, ignore it
   if (isHMR) return;
 
