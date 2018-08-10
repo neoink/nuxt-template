@@ -38,7 +38,7 @@ export const mutations = {
     if (state.locales.indexOf(locale) !== -1) {
       state.locale = locale;
     }
-  },  
+  },
 };
 
 export const actions = {
@@ -71,5 +71,5 @@ export const actions = {
       {{/if}}
       throw new Error('SAVE_IN_SESSION Failed');
     }
-  },  
+  },
 };
