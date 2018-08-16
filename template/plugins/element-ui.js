@@ -123,6 +123,16 @@ export default ({ params }) => {
       localFileImport = langEN;
       break;
     {{/if_eq}}
+    {{#if_eq key 'ES'}}
+    case 'es':
+      localFileImport = langES;
+      break;
+    {{/if_eq}}
+    {{#if_eq key 'IT'}}
+    case 'it':
+      localFileImport = langIT;
+      break;
+    {{/if_eq}}
     {{/each}}
     default:
       localFileImport = langEN;
